@@ -1,0 +1,6 @@
+0000000000000000000000000000000000000000 145d0b40c634ee11a89fa44b2038f77a96a10aea Carla <miss.regadas@gmail.com> 1435693314 +0100	clone: from https://github.com/CRegadas/TwitterStreamProject.git
+145d0b40c634ee11a89fa44b2038f77a96a10aea 0af9204746919a5b84fc5c357d10153303b21868 Carla <miss.regadas@gmail.com> 1435702611 +0100	commit: old files removed__found problem in Spark.class
+0af9204746919a5b84fc5c357d10153303b21868 47ee0b7400f1349de8a4a17495e0aac615deebe2 Carla <miss.regadas@gmail.com> 1435709896 +0100	commit: updated some libraries version
+47ee0b7400f1349de8a4a17495e0aac615deebe2 52eb88d639d144c4343919926b6f808c6db6083b Carla <miss.regadas@gmail.com> 1435749496 +0100	commit: idea folder removed
+52eb88d639d144c4343919926b6f808c6db6083b 21a963a648e05106e6222f6a26ea6b32eae10fb2 Carla <miss.regadas@gmail.com> 1435796517 +0100	commit: add new method to find tweets based on tags and add playlists to redis
+21a963a648e05106e6222f6a26ea6b32eae10fb2 baa88ca774406047853095b0e4532f193742129f Carla <miss.regadas@gmail.com> 1435853447 +0100	commit: small update
