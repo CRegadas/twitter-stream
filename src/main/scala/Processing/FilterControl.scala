@@ -14,7 +14,6 @@ class FilterControl[T](process: IProcess[DStream[(T, String)]], service: IServic
   /** Collect hashtags and store in redis **/
   def filterByHashTags =
   {
-
   	println("------------------------------------------FILTER_CONTROL")
 
     //var t = Array[(T, String)]()
