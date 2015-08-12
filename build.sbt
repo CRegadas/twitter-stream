@@ -1,6 +1,6 @@
 import AssemblyKeys._
 
-name := "hello"
+name := "twitter-stream"
 
 version := "1.0"
 
@@ -12,24 +12,21 @@ resolvers ++= Seq(
 )
 
 libraryDependencies ++= Seq(
-  "org.apache.kafka" % "kafka_2.10" %  "0.8.1.1"
-    exclude("javax.jms", "jms")
-    exclude("com.sun.jdmk", "jmxtools")
-    exclude("com.sun.jmx", "jmxri")
-    exclude("org.slf4j", "slf4j-simple"),
-  "org.twitter4j" % "twitter4j-stream" % "4.0.3",
+  "org.apache.kafka" %% "kafka" %  "0.8.2.1",
+  "org.twitter4j" % "twitter4j-stream" % "3.0.3",
   "net.debasishg" %% "redisclient" % "3.0",
   "com.datastax.spark" %% "spark-cassandra-connector" % "1.3.0-M1",
   "junit" % "junit" % "4.12" % "test",
-  "org.apache.spark" %% "spark-core" % "1.4.0" % "provided",
-  "org.apache.spark" %% "spark-streaming" % "1.4.0",
-  "org.apache.spark" %% "spark-streaming-kafka" % "1.4.0",
-  "org.apache.spark" % "spark-streaming-twitter_2.10" % "1.1.0",
-  "org.scalaz" %% "scalaz-core" % "7.1.1",
-  "com.typesafe.akka" %% "akka-actor" % "2.2.3",
-  "com.typesafe.akka" %% "akka-contrib" % "2.2.3",
+  "org.apache.spark" %% "spark-core" % "1.4.1" % "provided",
+  "org.apache.spark" %% "spark-streaming" % "1.4.1",
+  "org.apache.spark" %% "spark-streaming-kafka" % "1.4.1",
+  //"org.apache.spark" %% "spark-streaming-twitter" % "1.4.1",
+  "org.scalaz" %% "scalaz-core" % "7.1.3",
+  "com.typesafe.akka" %% "akka-actor" % "2.3.12",
+  "com.typesafe.akka" %% "akka-contrib" % "2.3.12",
   "com.amazonaws" % "aws-java-sdk" % "1.8.0",
-  "com.typesafe.play" %% "play" % "2.2.3-RC2"
+  "org.log4s" %% "log4s" % "1.1.5",
+  "ch.qos.logback" % "logback-classic" % "1.1.2"
 )
 
 assemblySettings
