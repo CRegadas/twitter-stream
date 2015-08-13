@@ -20,7 +20,7 @@ class FilterControl[T](process: IProcess[DStream[(T, String)]], service: IServic
     val data: DStream[(T, String)] = process.collect()
     println("HASHTAGS no FILTER_CONTROL recolhidas do Kafka: "+data.print())
 
-	  data.foreachRDD( rdd => service.writeHashtags(rdd.collect()) )
+	data.foreachRDD( rdd => service.writeHashtags(rdd.collect()) )
 
     process.start()
 
