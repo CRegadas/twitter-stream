@@ -1,12 +1,11 @@
 package Processing
 
-import scala.collection.immutable.HashMap
-
 import Services.IServices
+import org.apache.spark.streaming.Seconds
 import org.apache.spark.streaming.dstream.DStream
 import twitter4j._
-import collection.JavaConversions._
-import scala.util.matching.Regex
+
+import scala.collection.JavaConversions._
 
 
 class FilterControl[T](process: IProcess[DStream[(T, String)]], service: IServices[T], twitter : Twitter) {
@@ -21,8 +20,6 @@ class FilterControl[T](process: IProcess[DStream[(T, String)]], service: IServic
     println("HASHTAGS no FILTER_CONTROL recolhidas do Kafka: "+data.print())
 
 	  data.foreachRDD( rdd => service.writeHashtags(rdd.collect()) )
-
-    process.start()
 
   }
 
@@ -44,17 +41,37 @@ class FilterControl[T](process: IProcess[DStream[(T, String)]], service: IServic
     tweetsByHashtag
   }
 
-  def topHashtags =
+  // consultar pelo redis
+/*  def topHashtags(n : Int) =
   {
-    //var max : Long = 0
-
     val tag: Regex = """HashTag: *""".r
-    val res: HashMap[String, Long] = service.count(tag)
-    println("-----------------------------------Teste tophashtags: "+res)
-    res.foreach(println)
+    val res: List[(String, Long)] = service.count(tag)
+    val resOrderByValue: List[(String, Long)] = res.sortWith((x,y) => x._2 < y._2)
+    resOrderByValue.foreach(println)
+    val res2 = resOrderByValue.takeRight(n).sortWith((x,y) => x._2 > y._2)
+    println("-------------------- TOP5 ")
+    res2.foreach(println)
 
-    //val res = client.keys(tag)
-    //res.foreach(println)
+  }*/
+
+  def topHashtagsLive(seg : Int) =
+  {
+    val data: DStream[(HashtagEntity, String)] = process.getHashtagsList()
+
+    val topCountsN: DStream[(Int, (HashtagEntity, String))] = data.map((_, 1)).reduceByKeyAndWindow(_ + _, Seconds(seg))
+                                                                  .map{case (topic, count) => (count, topic)}
+                                                                  .transform(_.sortByKey(false))
+    topCountsN.foreachRDD( rdd => {
+
+
+      var list = List[(String, Int)]()
+      rdd.collect().foreach(pair => list = (pair._2._1.getText, pair._1) :: list)
+      val orderList : List[(String, Int)] = list.sortWith((x,y) => x._2 > y._2)
+      println("\nPopular topics in last N seconds (%s total):".format(rdd.count()))
+      orderList.take(5).foreach(println)
+
+    })
+
 
   }
 
@@ -64,6 +81,13 @@ class FilterControl[T](process: IProcess[DStream[(T, String)]], service: IServic
     service.readTweetsByTag(tag)
   }
 
+  def toDo() =
+  {
+    filterByHashTags
+    topHashtagsLive(10)
+    process.start()
+
+  }
 
 
 

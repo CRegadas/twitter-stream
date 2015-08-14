@@ -1,10 +1,6 @@
 package Services
 
-import scala.collection.immutable.HashMap
-
 import twitter4j.Status
-
-import scala.util.matching.Regex
 
 trait IServices[T] {
 
@@ -13,6 +9,6 @@ trait IServices[T] {
   def writePlaylist(tweet: String) : scala.Unit = { }
   def readTweetsByTag(tag: String) : scala.Unit = { }
   def read() : scala.Unit = { }
-  def count(tag: Regex) : HashMap[String, Long]
+  def count(tag: String) : Long
 
 }

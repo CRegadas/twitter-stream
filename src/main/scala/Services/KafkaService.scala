@@ -1,14 +1,11 @@
 package Services
 
 import java.io.{ByteArrayOutputStream, ObjectOutputStream}
-import scala.collection.immutable.HashMap
 import java.util.Properties
 
 import kafka.javaapi.producer.Producer
 import kafka.producer.KeyedMessage
 import twitter4j.{HashtagEntity, Status}
-
-import scala.util.matching.Regex
 
 class KafkaService(producer: Producer[String, Array[Byte]], topic : String) extends IServices[HashtagEntity] {
 
@@ -41,5 +38,5 @@ class KafkaService(producer: Producer[String, Array[Byte]], topic : String) exte
 
   }
 
-  override def count(tag: Regex): HashMap[String, Long] = ???
+  override def count(tag: String) : Long = ???
 }

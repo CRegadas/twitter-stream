@@ -3,9 +3,6 @@ package Services
 import com.redis.RedisClient
 import twitter4j.{HashtagEntity, Status}
 
-import scala.collection.immutable.HashMap
-import scala.util.matching.Regex
-
 class Redis extends IServices[HashtagEntity] {
 
   //implicit val akkaSystem = akka.actor.ActorSystem()
@@ -60,14 +57,23 @@ class Redis extends IServices[HashtagEntity] {
 
   //akkaSystem.shutdown()
 
-  override def count(tag: Regex): HashMap[String, Long] = {
+/*  override def count(tag: Regex): List[(String, Long)] = {
 
-    var lista = new HashMap[String,Long]()
+    var lista = List[(String, Long)]()
     val tags: List[Option[String]] = redis.keys(tag).get
-    tags.foreach(hashtag => lista+=(hashtag.get -> redis.scard(hashtag).get))
+    tags.foreach(hashtag => lista = (hashtag.get.toString , redis.scard(hashtag.get.toString).get) :: lista)
     return lista
 
+  }*/
+
+
+  override def count(tag: String) : Long =
+  {
+    redis.scard(tag).get
   }
+
+
+
 }
 
 

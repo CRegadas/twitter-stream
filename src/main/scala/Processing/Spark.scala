@@ -5,8 +5,8 @@ import org.apache.log4j.{Level, Logger}
 import org.apache.spark.storage.StorageLevel
 import org.apache.spark.streaming.dstream.{DStream, ReceiverInputDStream}
 import org.apache.spark.streaming.kafka.KafkaUtils
-import org.apache.spark.{SparkConf, Logging}
 import org.apache.spark.streaming.{Seconds, StreamingContext}
+import org.apache.spark.{Logging, SparkConf}
 import twitter4j.HashtagEntity
 
 class Spark extends IProcess[DStream[(HashtagEntity, String)]] with Logging{
@@ -16,7 +16,7 @@ class Spark extends IProcess[DStream[(HashtagEntity, String)]] with Logging{
                                 //.setMaster("spark://macbookarura.lan:7077")                          
                                 //.setJars(Seq("/Users/sindz/MEI/Dissertacao/workspace/diriri/target/scala-2.10/hello-assembly-1.0.jar"))
   val ssc = new StreamingContext(new SparkConf(), Seconds(5))
-  //var topHashtags = List[(String, Int)]()
+  var hashtagsList: DStream[(HashtagEntity, String)] = _
 
   def init() : DStream[Array[Byte]] =
   {
@@ -42,9 +42,11 @@ class Spark extends IProcess[DStream[(HashtagEntity, String)]] with Logging{
     ssc.awaitTermination()
   }
 
+  override def getHashtagsList() : DStream[(HashtagEntity, String)] = { hashtagsList }
 
   override def collect(): DStream[(HashtagEntity, String)] =
   {
+
     println("------------------------------------------HASHTAGS_COLLECT")
     //var hashtags = List[(String, Int)]()
 
@@ -59,10 +61,10 @@ class Spark extends IProcess[DStream[(HashtagEntity, String)]] with Logging{
     //newDS.foreachRDD(rdd =>{val cena = rdd.collect(); cena.foreach(par =>{ println("HASH_GUARDADA: "+par); hashtags = hashtags:+(par._1._2 , par._2)})})
     //hashtags.foreach(println)
     //topHashtags = topHashtags ++ hashtags
-    return dhtags
+    hashtagsList = dhtags
+    dhtags
 
   }
-
 
 
   override def setStreamingLogLevels() =

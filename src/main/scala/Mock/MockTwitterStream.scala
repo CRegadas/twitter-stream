@@ -1,10 +1,9 @@
 package Mock
 
-import twitter.extend.{TwitterStreamExtend, StreamListenerExtend, StatusStreamExtend}
+import twitter.extend.{StatusStreamExtend, StreamListenerExtend, TwitterStreamExtend}
 import twitter4j._
-import twitter4j.auth.{RequestToken, AccessToken, Authorization}
+import twitter4j.auth.{AccessToken, Authorization, RequestToken}
 import twitter4j.conf.Configuration
-import twitter.extend.UserStreamExtend
 
 class MockTwitterStream extends TwitterStreamExtend {
 
@@ -54,7 +53,22 @@ class MockTwitterStream extends TwitterStreamExtend {
                                     }
                               ],
                               "urls": [ ],
-                              "hashtags": [ ]
+                              "hashtags": [
+                                    {
+                                          "text": "PGP",
+                                          "indices": [
+                                                130,
+                                                134
+                                          ]
+                                    },
+                                    {
+                                          "text": "LaLa",
+                                          "indices": [
+                                                130,
+                                                134
+                                          ]
+                                     }
+                              ]
                         },
                         "contributors": null,
                         "retweeted": false,

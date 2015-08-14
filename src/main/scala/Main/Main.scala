@@ -47,17 +47,20 @@ object Main extends App with Logging
         /** ask to filter data **/
         println("------------------------------------------MAIN_filter control")
         val tFactory: Twitter = new TwitterFactory(config).getInstance()
+
+
         val processH = new Spark
         val filter = new FilterControl[HashtagEntity](processH, serviceR, tFactory)
-        filter.filterByHashTags
-        filter.topHashtags
+        filter.toDo()
+        /*filter.filterByHashTags
+        filter.topHashtags(5)*/
 
         //filter.filterByHashTags()
         //filter.teste("ShikakaMusicBox")
         /*filter.findTweetsByTags("#ShikakaMusicBox").foreach(tweet =>
                 println("-------------------------------------- TWEET BY TAG:  "+tweet.getText))*/
 
-        Thread.sleep(100000)
+        Thread.sleep(10000)
 
 
 }
