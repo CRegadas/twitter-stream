@@ -1,7 +1,7 @@
 package org.twitterstream.store
 
 import com.redis.RedisClient
-import org.twitterstream.utils._
+import org.twitterstream.core.Tweet
 
 object RedisStore extends Store {
 

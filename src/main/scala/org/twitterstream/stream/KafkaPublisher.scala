@@ -1,40 +1,23 @@
 package org.twitterstream.stream
 
-import com.typesafe.config.ConfigFactory
-import java.util.Properties
+import akka.actor._
 import kafka.javaapi.producer.Producer
-import kafka.producer.{ProducerConfig, KeyedMessage}
+import kafka.producer.KeyedMessage
 
-import org.twitterstream.utils._
+import org.twitterstream.core.Tweet
 
-object KafkaConfig {
-  val config = ConfigFactory.load()
-  val brokers: String = config.getString("kafka.metadata.broker.list")
-  val serializer: String = config.getString("kafka.serializer.class")
-  val producerType: String = config.getString("kafka.producer.type")
-  val compressionCodec: String = config.getString("kafka.compression.codec")
-
-  def properties: Properties = {
-    val props = new Properties
-    props.put("metadata.broker.list", brokers)
-    props.put("serializer.class", serializer)
-    props.put("producer.type", producerType)
-    props.put("compression.codec", compressionCodec)
-
-    props
-  }
-
-  def producerConfig: ProducerConfig = new ProducerConfig(properties)
+object KafkaPublisher {
+  def props(topic: String) = Props(classOf[KafkaPublisher], topic)
 }
 
 class KafkaPublisher(val topic: String) extends SubscriberActor {
+  import org.twitterstream.Settings.Kafka
 
   private var producer: Producer[String, Array[Byte]] = null
+  private lazy val config = Kafka.producerConfig
 
   override def preStart: Unit = {
-    val config = KafkaConfig.producerConfig
     producer = new Producer[String, Array[Byte]](config)
-
     subscribe
   }
 

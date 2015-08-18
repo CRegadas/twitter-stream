@@ -2,7 +2,7 @@
 package org.twitterstream.stream
 
 import akka.actor._
-import org.twitterstream.utils._
+import org.twitterstream.core.Tweet
 
 trait PublisherActor extends Actor with ActorLogging {
 

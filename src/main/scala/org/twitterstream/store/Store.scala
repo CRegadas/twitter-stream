@@ -1,6 +1,6 @@
 package org.twitterstream.store
 
-import org.twitterstream.utils._
+import org.twitterstream.core.Tweet
 
 trait Store {
   def save(tweet: Tweet): Unit
