@@ -10,9 +10,6 @@ import java.util.concurrent.{ExecutorService, Executors}
 import org.twitterstream.Settings._
 import org.twitterstream.stream._
 
-import org.apache.spark._
-import org.apache.spark.streaming._
-
 
 object StreamApp extends App {
   // ActorSystem & thread pools

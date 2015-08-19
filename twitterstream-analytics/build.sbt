@@ -13,8 +13,6 @@ resolvers ++= Seq(
 
 libraryDependencies ++= Seq(
   "org.apache.kafka" %% "kafka" %  "0.8.2.1",
-  "org.twitter4j" % "twitter4j-stream" % "4.0.3",
-  "net.debasishg" %% "redisclient" % "3.0",
   "junit" % "junit" % "4.12" % "test",
   "org.scalaz" %% "scalaz-core" % "7.1.3",
   "com.typesafe.akka" %% "akka-actor" % "2.3.12",

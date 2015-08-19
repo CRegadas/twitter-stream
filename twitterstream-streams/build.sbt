@@ -18,11 +18,7 @@ libraryDependencies ++= Seq(
   "junit" % "junit" % "4.12" % "test",
   "org.scalaz" %% "scalaz-core" % "7.1.3",
   "com.typesafe.akka" %% "akka-actor" % "2.3.12",
-  "com.typesafe.akka" %% "akka-contrib" % "2.3.12",
-  "org.apache.spark" %% "spark-core" % "1.4.1" % "provided",
-  "org.apache.spark" %% "spark-streaming" % "1.4.1",
-  "org.apache.spark" %% "spark-streaming-kafka" % "1.4.1",
-  "com.datastax.spark" %% "spark-cassandra-connector" % "1.4.0-M3"
+  "com.typesafe.akka" %% "akka-contrib" % "2.3.12"
 )
 
 assemblySettings
