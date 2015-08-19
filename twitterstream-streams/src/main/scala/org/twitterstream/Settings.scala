@@ -39,12 +39,4 @@ final object Settings extends Serializable {
 
     def producerConfig: ProducerConfig = new ProducerConfig(properties)
   }
-
-  object Cassandra {
-    val config = rootConfig.getConfig("cassandra")
-
-    val keySpace: String = config.getString("keyspace")
-    val tableRaw: String = config.getString("table.raw")
-    val tableWordCount: String = config.getString("table.wordcount")
-  }
 }

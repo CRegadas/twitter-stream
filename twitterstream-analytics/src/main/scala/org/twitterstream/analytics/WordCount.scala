@@ -15,7 +15,6 @@ import com.datastax.spark.connector._
 
 import org.twitterstream.Settings.{Cassandra => Config}
 import org.twitterstream.core._
-import org.twitterstream.utils._
 
 case class WordCountStream(stream: DStream[String])  {
   val words = stream.flatMap(_.split(" ")).filter(_.nonEmpty)
