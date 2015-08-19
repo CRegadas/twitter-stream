@@ -20,7 +20,7 @@ class KafkaStreaming(ssc: StreamingContext, topics: Set[String]) extends Actor w
   private val stream = KafkaUtils.createDirectStream[String, String, StringDecoder, StringDecoder](
     ssc,
     kafkaParams,
-    Set("test")
+    topics
   ).map(_._2)
 
   WordCountStream(stream)
