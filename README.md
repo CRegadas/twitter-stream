@@ -1,6 +1,5 @@
 # TwitterStreamProject
-Small project to experiment big data tools. The twitter stream api is connected to Kafka, all the data is stored in Redis and processed by Spark.
-
+Small project to experiment big data tools. The twitter stream api is connected to Kafka, all the data is stored in Redis/Cassandra and processed by Spark.
 
 # How to run
 
@@ -16,20 +15,7 @@ When using the Twitter streaming API to access tweets via HTTP requests, you mus
 
 4. Click on the “OAuth tool” tab and you’ll see four fields for authentication which you need in order to use twitter4j to access tweets and other information from Twitter: Consumer key, Consumer secret, Access token, and Access token secret.
 
-After you get your authentication details, go to the main file and change, respectively, the fields:
-
-```scala
-
-	/** TwitterStream configuration **/
-    val config = new ConfigurationBuilder()
-    .setOAuthConsumerKey("[your consumer key here]")
-    .setOAuthConsumerSecret("[your consumer secret here]")
-    .setOAuthAccessToken("[your access token here]")
-    .setOAuthAccessTokenSecret("[your access token secret here]")
-    .setJSONStoreEnabled(true)
-    .build
-
-```
+After you get your authentication details check [Configuration](https://github.com/CRegadas/twitter-stream/blob/master/twitterstream-streams/src/main/resources/application.conf#L2) to see what variables to export.
 
 5. Install kafka with the version 0.8.2.1
 
