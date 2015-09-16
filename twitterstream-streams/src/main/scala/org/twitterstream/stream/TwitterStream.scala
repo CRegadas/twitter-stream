@@ -1,6 +1,5 @@
 package org.twitterstream.stream
 
-import akka.actor._
 import twitter4j._
 import org.twitterstream.core.{Tweet, Author}
 import org.twitterstream.utils.TwitterStreamClient

@@ -1,8 +1,8 @@
 package org.twitterstream
 
 import java.util.Properties
+
 import com.typesafe.config.ConfigFactory
-import kafka.javaapi.producer.Producer
 import kafka.producer.ProducerConfig
 
 final object Settings extends Serializable {
@@ -36,6 +36,15 @@ final object Settings extends Serializable {
 
     val keySpace: String = config.getString("keyspace")
     val tableRaw: String = config.getString("table.raw")
-    val tableWordCount: String = config.getString("table.wordcount")
+    val tableHashtagCount: String = config.getString("table.hashtagcount")
+    val tableTopHashtag: String = config.getString("table.tophashtag")
+  }
+
+  object Spark {
+    val config = rootConfig.getConfig("spark")
+
+    val master: String = config.getString("master")
+    val cassandraHost: String = config.getString("spark.cassandra.connection.host")
+    val jars: String = config.getString("jars")
   }
 }

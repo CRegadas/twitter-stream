@@ -1,5 +1,5 @@
+import play.sbt.PlayScala
 import sbt._
-import Keys._
 
 object TwitterStreamBuild extends Build {
   lazy val root = Project(id = "twitterstream",
@@ -15,5 +15,6 @@ object TwitterStreamBuild extends Build {
     base = file("twitterstream-streams")) dependsOn(core)
 
   lazy val clients = Project(id = "twitterstream-clients",
-    base = file("twitterstream-clients")) dependsOn(core, analytics)
+    base = file("twitterstream-clients")).enablePlugins(PlayScala) dependsOn(core, analytics)
+
 }

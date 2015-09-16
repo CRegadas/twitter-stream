@@ -23,7 +23,7 @@ class KafkaStreaming(ssc: StreamingContext, topics: Set[String]) extends Actor w
     topics
   ).map(_._2)
 
-  WordCountStream(stream)
+  HashtagCountStream(stream)
 
   override def preStart: Unit = 
     context.parent ! StreamReady

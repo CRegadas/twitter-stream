@@ -4,5 +4,5 @@ case object StreamReady
 
 sealed trait Request
 
-sealed trait WordCountRequest extends Request
-case class GetTopKWordCount(word: String, k: Int) extends WordCountRequest
+sealed trait HashtagCountRequest extends Request
+case class GetTopKHashtagCount(k: Int) extends HashtagCountRequest

@@ -26,7 +26,7 @@ class KafkaPublisher(val topic: String) extends SubscriberActor {
       val msg = tweet.body.getBytes("UTF8")
 
       producer.send(new KeyedMessage[String, Array[Byte]](topic, msg))
-      log.info("Kafka topic: {} msg: {}", topic, msg)
+      log.info("Kafka topic: {} msg: {}", topic, new String(msg))
   }
 
 }

@@ -1,6 +1,6 @@
 package org.twitterstream.core
 
-case class TopKWordCount(word: String, top: Seq[Int])
+case class TopKHashtagCount(top: Seq[(String, Int)])
 
 final case class Author(handle: String)
 

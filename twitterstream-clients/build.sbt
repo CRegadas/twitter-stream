@@ -28,3 +28,7 @@ mergeStrategy in assembly := {
   case "reference.conf"                                      => MergeStrategy.concat
   case _                                                     => MergeStrategy.first
 }
+
+// Play provides two styles of routers, one expects its actions to be injected, the
+// other, legacy style, accesses its actions statically.
+routesGenerator := InjectedRoutesGenerator

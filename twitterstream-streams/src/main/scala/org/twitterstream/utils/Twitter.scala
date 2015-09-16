@@ -1,15 +1,8 @@
 package org.twitterstream.utils
 
-import akka.actor.ActorSystem
 import twitter4j._
 import twitter4j.auth.AccessToken
 import twitter4j.conf.ConfigurationBuilder
-
-import scala.collection.JavaConverters._
-import scala.collection._
-import scala.util.Try
-
-import org.twitterstream.core._
 
 object TwitterClient {
   import org.twitterstream.Settings.{Twitter => Config}

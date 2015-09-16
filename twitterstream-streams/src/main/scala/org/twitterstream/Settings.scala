@@ -1,8 +1,8 @@
 package org.twitterstream
 
 import java.util.Properties
+
 import com.typesafe.config.ConfigFactory
-import kafka.javaapi.producer.Producer
 import kafka.producer.ProducerConfig
 
 final object Settings extends Serializable {
@@ -39,4 +39,5 @@ final object Settings extends Serializable {
 
     def producerConfig: ProducerConfig = new ProducerConfig(properties)
   }
+
 }
