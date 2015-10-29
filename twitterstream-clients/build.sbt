@@ -18,6 +18,10 @@ libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-core" % "1.4.1" % "provided"
 )
 
+dependencyOverrides ++= Set(
+  "com.fasterxml.jackson.core" % "jackson-databind" % "2.4.4"
+)
+
 assemblySettings
 
 mergeStrategy in assembly := {

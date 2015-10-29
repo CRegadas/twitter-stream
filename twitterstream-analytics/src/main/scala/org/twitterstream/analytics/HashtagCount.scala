@@ -42,7 +42,6 @@ class HashtagCountActor(sc: SparkContext) extends Actor with ActorLogging {
     sc.cassandraTable[(String, Int)](Config.keySpace, Config.tableHashtagCount).cache()
       .collectAsync().map(toTopK) pipeTo requester
 
-
     /** Saves the top hashtag to Cassandra, top_hashtag table **/
 /*    val ord = sc.cassandraTable[(String, Int)](Config.keySpace, Config.tableHashtagCount).cache()
       .collect().toList.sortBy(_._2).reverse.take(k)

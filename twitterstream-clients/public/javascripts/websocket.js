@@ -1,3 +1,6 @@
+var data = [];
+var canDrawPieChart = true;
+
 function init() {
 
     var websocket = new WebSocket("ws://localhost:9000/top");
@@ -15,8 +18,16 @@ function init() {
     websocket.onmessage = function(evt){
         if (evt.data != "INIT")
         {
-            var object = JSON.parse(evt.data);
-            pieChart(object)
+            var top = JSON.parse(evt.data);
+            console.log(evt.data)
+
+            if (canDrawPieChart) {
+                canDrawPieChart = false;
+                pieChart(top)
+                data = []
+            }
+
+
         }
         console.log("Client received data and say TOP");
         websocket.send("TOP");
@@ -29,29 +40,33 @@ function init() {
 
 }
 
-function pieChart(obj)
+setInterval(function () {
+    console.log('interval called');
+    canDrawPieChart = true;
+}, 60000);
+
+
+function pieChart(top)
 {
-    var data = [];
 
     console.log("Entrei pieChart");
-    console.log("pieChart data: ",obj);
+    console.log("pieChart data: ",top);
 
-    /*top.forEach(function(entry) {
-
-        data.push({
-          value: entry.value,
+    data = top.map(function ( o ) {
+        return {
+          value: o.value,
           color: "#46BFBD",
           highlight: "#FF5A5E",
-          label: entry.label
-        });
+          label: o.label
+        }
     });
 
-    console.log(data)
+    console.log("FINAL: ",data)
 
-    window.onload = function(){
-        var ctx = document.getElementById("pie-chart-area").getContext("2d");
-        window.myPie = new Chart(ctx).Pie(data);
-    };*/
+
+    var ctx = document.getElementById("pie-chart-area").getContext("2d");
+    window.myPie = new Chart(ctx).Pie(data);
+
 
 }
 
